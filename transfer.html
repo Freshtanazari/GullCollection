@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>فرم تراکنش</title>
+    <link rel="stylesheet" href="assets\css\transaction.css">
+    <script src="assets\js\JQuery.js"></script>
+    <script>
+        $(function(){
+          $("#navbar-container").load("navbar.html");
+        });
+    </script> 
+</head>
+<body>
+    <div id="navbar-container"></div> 
+
+    <div class="transaction-container">
+        <h1>ثبت تراکنش</h1>
+        <form id="transactionForm">
+            <!-- Transaction Type Dropdown -->
+            <label for="transactionType">نوع تراکنش:</label>
+            <select id="transactionType" name="transactionType" onchange="showRelevantFields()">
+                <option value="withdrawal">برداشت</option>
+                <option value="investment">سرمایه‌گذاری</option>
+                <option value="reinvestment">سرمایه‌گذاری مجدد</option>
+                <!-- Add other transaction types here as needed -->
+            </select>
+
+            <!-- Amount Input -->
+            <label for="amount">مقدار:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <!-- Description (Optional) -->
+            <label for="description">توضیحات:</label>
+            <textarea id="description" name="description"></textarea>
+
+            <!-- Additional Field for Reinvestment Reference -->
+            <div id="referenceIdField" class="optional-field" style="display: none;">
+                <label for="referenceId">شناسه مرجع (برای سرمایه‌گذاری مجدد):</label>
+                <input type="number" id="referenceId" name="referenceId">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">ثبت تراکنش</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets\css\storeItem.css">
+    <title>افزودن محصول جدید</title>
+    <script src="assets\js\JQuery.js"></script>
+
+    <script>
+        $(function(){
+          $("#navbar-container").load("navbar.html");
+        });
+        </script> 
+</head>
+<body>
+    <div id="navbar-container"></div> 
+    
+    <div class="form-container">
+        <h2>افزودن محصول جدید</h2>
+        <form action="insertProduct.php" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">نام محصول</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">تعداد</label>
+                    <input type="number" id="quantity" name="quantity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">قیمت فروش</label>
+                    <input type="number" id="price" name="price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="price_bought">قیمت خرید</label>
+                    <input type="number" id="price_bought" name="price_bought" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="userKey">کلید کاربر</label>
+                    <input type="text" id="userKey" name="userKey" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">تاریخ</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="source">منبع پول</label>
+                    <select id="source" name="source" required>
+                        <option value="reinvestment">سرمایه‌گذاری مجدد</option>
+                        <option value="loan">وام</option>
+                        <option value="investment">سرمایه‌گذاری</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">تصویر محصول</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">توضیحات</label>
+                <textarea id="description" name="description" rows="2" required></textarea>
+            </div>
+            <button type="submit">افزودن محصول</button>
+        </form>
+    </div>
+</body>
+</html>

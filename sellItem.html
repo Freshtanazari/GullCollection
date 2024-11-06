@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets\css\sellItem.css">
+    <title>current items</title>
+</head>
+<script src="assets\js\JQuery.js"></script>
+
+<script>
+    $(function(){
+      $("#navbar-container").load("navbar.html");
+    });
+    </script>
+<body>
+    
+    <div id="navbar-container"></div> 
+    <div class="store-container" id="store-container"></div>
+
+    <!-- Modal for selling product -->
+    <div id="sellModal" class="modal" dir="rtl">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>فروش محصول</h2>
+            <form id="sellForm">
+                <div class="form-row">
+                    <label for="sell_userKey">کلید کاربر:</label>
+                    <input type="text" id="sell_userKey" required>
+                </div>
+                <div class="form-row">
+                    <label for="sell_date">تاریخ:</label>
+                    <input type="date" id="sell_date" required>
+                </div>
+                <div class="form-row">
+                    <label for="sell_price">قیمت فروش:</label>
+                    <input type="number" id="sell_price" step="0.01" required>
+                </div>
+                <div class="form-row">
+                    <label for="sell_quantity">تعداد:</label>
+                    <input type="number" id="sell_quantity" min="1" required>
+                </div>
+                <button type="button" id="submitSellForm">ذخیره فروش</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <script>
+        // Array of product data
+        const products = [
+            { name: "سیب", quantity: 10, price: 15.00, image: "./assets/images/apple.jpg" },
+            { name: "دستبند", quantity: 5, price: 25.00, image: "assets/images/bracelet.jpeg" },
+            { name: "انگشتری", quantity: 8, price: 10.00, image: "./assets/images/rings.jpeg" },
+            // Add more products as needed
+        ];
+
+        // Function to create product cards
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            // Set card content
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-quantity">تعداد: ${product.quantity}</p>
+                    <p class="product-price">قیمت خرید: $${product.price.toFixed(2)}</p>
+                    <button class="sell-button" onclick="sellProduct('${product.name}')">فروش</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Function to render all products
+        function renderProducts() {
+            const container = document.getElementById('store-container');
+            container.innerHTML = ""; // Clear container before rendering
+            products.forEach(product => {
+                const card = createProductCard(product);
+                container.appendChild(card);
+            });
+        }
+
+        // Function to handle sell button click
+        function sellProduct(productName) {
+            // Show the modal
+            console.log("done")
+            document.getElementById("sellModal").style.display = "block";
+            console.log("done")
+            document.getElementById("sellForm").dataset.productName = productName; // Store product name
+            console.log("done")
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("sellModal").style.display = "none";
+        }
+
+        // Function to handle sell form submission
+        document.getElementById("submitSellForm").onclick = function() {
+            const userKey = document.getElementById("sell_userKey").value;
+            const date = document.getElementById("sell_date").value;
+            const soldPrice = document.getElementById("sell_price").value;
+            const quantity = document.getElementById("sell_quantity").value;
+            const productName = document.getElementById("sellForm").dataset.productName;
+
+            // Here, you can implement the AJAX request to send data to the server
+            alert(`Selling ${quantity} of ${productName} at ${soldPrice} by user ${userKey} on ${date}`);
+
+            // Close the modal
+            closeModal();
+
+            // Reset the form
+            document.getElementById("sellForm").reset();
+        };
+
+        // Render products on page load
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+
+    </div>
+</body>
+</html>
