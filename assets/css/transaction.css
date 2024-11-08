@@ -1,53 +1,119 @@
+/* Basic page setup */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     direction: rtl;
 }
 
-.transaction-container {
-    background: #fff;
-    padding: 20px;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-label {
-    display: block;
-    margin: 15px 0 5px;
-    font-weight: bold;
-}
-
-input, select, textarea, button {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-button {
+/* Styling the button */
+.show-button {
+    margin-bottom: 20px;
+    padding: 10px 15px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 1.1em;
 }
 
-button:hover {
+.show-button:hover {
     background-color: #45a049;
 }
 
-.optional-field {
-    display: none; /* Hidden by default */
+/* Form container */
+.hidden-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 2;
 }
+
+/* Form layout with two columns */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form select, form textarea {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styling the submit button */
+button[type="button"] {
+    grid-column: span 2;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="button"]:hover {
+    background-color: #45a049;
+}
+
+/* Transaction Table Styling */
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.transaction-table th, .transaction-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.transaction-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .hidden-form {
+        width: 80%;
+    }
+
+    .transaction-table th, .transaction-table td {
+        font-size: 12px;
+    }
+}
+/* Style for the close button (cross) */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.close-btn:hover {
+    color: red; /* Change color on hover */
+}
+

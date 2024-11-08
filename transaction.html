@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <title>فرم تراکنش</title>
+    <link rel="stylesheet" href="assets\css\transaction.css" />
+    <script src="assets\js\JQuery.js"></script>
+    <script>
+      $(function () {
+        $("#navbar-container").load("navbar.html");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <h2>لیست انتقالات</h2>
+    <button class="show-button" onclick="showForm()">ثبت</button>
+
+    <!-- Transaction Table -->
+    <h3>انتقالات قبلی</h3>
+
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>نوع انتقال</th>
+          <th>هدف</th>
+          <th>تاریخ</th>
+          <th>کلید کاربر</th>
+          <th>مبلغ</th>
+          <th>توضیحات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample Data (add actual data dynamically or through backend) -->
+        <tr>
+          <td>سرمایه‌گذاری</td>
+          <td>توسعه</td>
+          <td>2024-11-05</td>
+          <td>123456</td>
+          <td>1000</td>
+          <td>سرمایه‌گذاری جدید</td>
+        </tr>
+        <tr>
+          <td>برداشت</td>
+          <td>خرید</td>
+          <td>2024-11-06</td>
+          <td>654321</td>
+          <td>500</td>
+          <td>برداشت از حساب</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="hidden-form" id="transferForm">
+        <span class="close-btn" onclick="hideForm()">&times;</span>
+      <h3>فرم انتقال جدید</h3>
+      <form>
+        <div class="form-row">
+          <label for="kind">نوع انتقال:</label>
+          <select id="kind" name="kind">
+            <option value="withdraws">برداشت</option>
+            <option value="investment">سرمایه‌گذاری</option>
+            <option value="reinvestment">سرمایه‌گذاری مجدد</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="purpose">هدف:</label>
+          <input type="text" id="purpose" name="purpose" />
+        </div>
+
+        <div class="form-row">
+          <label for="date">تاریخ:</label>
+          <input type="date" id="date" name="date" />
+        </div>
+
+        <div class="form-row">
+          <label for="userkey">کلید کاربر:</label>
+          <input type="text" id="userkey" name="userkey" />
+        </div>
+
+        <div class="form-row">
+          <label for="amount">مبلغ:</label>
+          <input type="number" id="amount" name="amount" />
+        </div>
+
+        <div class="form-row">
+          <label for="description">توضیحات:</label>
+          <textarea id="description" name="description"></textarea>
+        </div>
+
+        <button type="button" onclick="hideForm()">ثبت انتقال</button>
+      </form>
+    </div>
+
+    <script>
+      function showForm() {
+        document.getElementById("transferForm").style.display = "block";
+      }
+
+      function hideForm() {
+        document.getElementById("transferForm").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
